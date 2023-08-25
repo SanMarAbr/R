@@ -4,6 +4,7 @@ library(ggplot2) # Carga de librerias para instalarlas es install.packages("nomr
 library(readxl)
 library(tidyr)
 library(dplyr)
+
 # Ruta de acceso directo a la base de datos
 setwd("C:\\Cursos\\Ciencia_Datos\\A2_Capacitacion\\R\\Capitulo_3\\BD") # Busqueda de BD
 enoe <- read_xlsx("mu_enoe.xlsx") # Se busca y se carga a un objeto la base de datos
@@ -110,7 +111,7 @@ ggplot(data = enoe)+
     stat_count(mapping = aes(x=sex))
 # Barras con porcentaje
 ggplot(data = enoe)+
-    geom_bar(mapping = aes(x=sex, y=..prop..,group = 1))
+    geom_bar(mapping = aes(x=sex,y = after_stat(prop),group = 1))
 # Barras con numero de observaciones con un nuevo dataframe
 prueba <- data.frame(
     sex = c("hombres", "mujeres"),
@@ -133,3 +134,34 @@ ggplot(data = enoe)+
 # Gráfica con separación por nivel de estudios
 ggplot(data = enoe)+
     geom_bar(mapping = aes(x = sex, fill=niv_edu))
+
+#Gráfica con diseño translucido
+# En esta gráfica hace el conteo de hombres y mujeres que estan en el dataframe
+# Este se tiene el conteo de las 10000 personas que se encuestaron
+
+ggplot(data = enoe, mapping = aes(sex ,fill = niv_edu))+
+    geom_bar(alpha = 1/5, position = "identity")
+
+# Grafica en forma de esqueleto ayuda demasiado a revisar en que linea se separa totalmente
+# La funcion fill es para rellenar la gráfica
+# Position para el conteo de los datos
+ggplot(data = enoe, mapping = aes(sex, color = niv_edu))+
+    geom_bar(fill = NA, position = "identity")
+
+# Grafica con position fill
+# Esta gráfica representa el 100% de los datos y permite observar con mayor claridad la propocioción de cada categoría
+ggplot(data = enoe, mapping = aes(sex, fill = niv_edu))+
+    geom_bar(position = "fill")
+
+#Grafica concentrada por nivel educativo
+# Esta grafica representa la distribucion del nivel educativo
+# lo que hace factor es hacer que los valores que se reunán sean todos los de la función fill
+ggplot(data = enoe, mapping = aes(x = factor(1), fill = niv_edu))+
+    geom_bar(position = "fill")
+
+# Gráfica con agrupaciones separadas con la funcion dodge
+# Nombres de los ejes con labs ()
+ggplot(data = enoe, mapping =  aes (sex, fill = niv_edu))+
+    geom_bar(position = "dodge")+
+    labs (title = "Observaciones por sexo y nivel educativo", x ="Sexo", y ="Observaciones")
+

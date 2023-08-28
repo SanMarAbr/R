@@ -165,3 +165,48 @@ ggplot(data = enoe, mapping =  aes (sex, fill = niv_edu))+
     geom_bar(position = "dodge")+
     labs (title = "Observaciones por sexo y nivel educativo", x ="Sexo", y ="Observaciones")
 
+# Gráficas de puntos, position jitter
+# Izquierda
+ggplot(data = enoe)+
+    geom_point(mapping = aes(anios_esc, ingreso_mensual, color = "red"))
+# Derecha con position = "jitter"
+# Jitter hace que los puntos tengan una posicion "Aleatorio"
+ggplot(data = enoe) +
+  geom_point(mapping = aes(anios_esc, ingreso_mensual), position = "jitter", color = "blue")
+
+# 3.5.7 Sistema de corrodenadas
+# La librería ggplot2 tiene un sistema de coordenadas catesianas (x, y)
+# Coord_flip()
+# Permite hacer cambio en las coordenadas que hacen que las graficas tengan cambios interesantes
+# Superior
+ggplot(data = enoe, mapping = aes (niv_edu, ingreso_mensual))+
+    geom_boxplot()
+# Inferior
+ggplot(data = enoe, mapping = aes (niv_edu, ingreso_mensual))+
+    geom_boxplot()+
+    coord_flip()
+
+# 3.5.2 coord_polar()
+# coord_polar() permite el uso de coordenadas polares.
+
+
+
+barra <- ggplot(data = enoe) +
+  geom_bar(mapping = aes(x = niv_edu, fill = niv_edu),
+           show.legend = FALSE, width = 1) +
+  theme(aspect.ratio = 1) +
+  labs(x = NULL, y = NULL)
+
+barra + coord_flip()
+barra + coord_polar()
+
+
+# Gráfica de pastel por porcentajes
+ggplot(data = enoe, mapping = aes(factor(1), fill= niv_edu))+
+    geom_bar(position = "fill")+
+    coord_polar(theta = "y")+
+    labs(x = "", y = "")
+
+# Grámatica de ggplot2
+# * ggplot(data = DATOS) + GEOM_FUNCION(mapping = aes (MAPEOS),stat = ESTADÍSTICAS,position = posicion)+
+#         FUNCION_COORDENADAS + FUNCION_FACETAS

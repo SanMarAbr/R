@@ -6,7 +6,7 @@ library(tidyr)
 library(dplyr)
 
 # Ruta de acceso directo a la base de datos
-setwd("C:\\Cursos\\Ciencia_Datos\\A2_Capacitacion\\R\\Capitulo_3\\BD") # Busqueda de BD
+setwd("C:\\Cursos\\Ciencia_Datos\\A2_Capacitacion\\R\\BD") # Busqueda de BD
 enoe <- read_xlsx("mu_enoe.xlsx") # Se busca y se carga a un objeto la base de datos
 # Exploración de la base de datos
 # Cuáles son las caractesísticas de la base de datos?
@@ -55,7 +55,7 @@ ggplot(data = enoe) +
 # Este analisis se esta solicitando que separe la información por sexo sex indicando que la gráfica resultante la muestre en un panel de 1 columna y 2
 ggplot(data = enoe) +
     geom_point(mapping = aes(x = anios_esc, y = ingreso_mensual)) +
-    facet_wrap(~sex, nrow = 2, ncol = 1)
+    facet_wrap(~sex, nrow = 2, ncol = 1
 
 
 # También es posible usar facet_grid para que se desagregue el sexo, el tipo de empleo
@@ -210,3 +210,7 @@ ggplot(data = enoe, mapping = aes(factor(1), fill= niv_edu))+
 # Grámatica de ggplot2
 # * ggplot(data = DATOS) + GEOM_FUNCION(mapping = aes (MAPEOS),stat = ESTADÍSTICAS,position = posicion)+
 #         FUNCION_COORDENADAS + FUNCION_FACETAS
+
+
+ggplot(data = enoe, mapping = aes(sex, ing_salarios,color = sex))+
+    geom_col()

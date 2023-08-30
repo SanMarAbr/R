@@ -1,0 +1,21 @@
+---
+title: "Encuesta Nacional de Ingresos y Gastos en los hogares"
+output: pdf_document
+---
+
+# ENIGH
+## Encuesta Nacional de Ingresos y Gastos en los hogares
+### En esta encuesta se integran los patrones de ingreso y egresos de las familias mexicanas al igual sobre información adicional sobre las características sociodemográficas de los integrantes del hogar
+
+```{r}
+# Código R de ejemplo
+x <- c(1, 2, 3, 4, 5)
+mean(x)
+```
+
+
+
+
+
+```
+```
